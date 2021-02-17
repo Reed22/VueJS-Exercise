@@ -1,0 +1,28 @@
+body {
+    padding-bottom: 50px;
+    text-align: center;
+    margin: auto;
+}
+
+ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+}
+
+li, .form-group {
+    max-width: 50%;
+    margin-left: 25%;
+}
+
+input {
+    margin: 50%;
+}
+
+.bad-btn {
+    background-color: red;
+}
+
+.good-btn {
+    background-color: green;
+}
