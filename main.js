@@ -1,8 +1,8 @@
 Vue.config.devtools = true
-Vue.component('Part1', {
+Vue.component('Hacker', {
     template: `
         <div id="part1-container">
-            <h1 class="display-1">Part One</h1>
+            <h1 class="display-1">HackerAPI Top Stories</h1>
             <ul>
                 <li v-for="story in stories" :key="story.id" class="list-group-item">
                     <h5>{{story.title}}</h5>
@@ -49,24 +49,37 @@ Vue.component('Part1', {
     }
 })
 
-Vue.component('Part2', {
+Vue.component('Validation', {
     template: `
     <div id="part2-container">
-    <h1 class="display-1">Part Two</h1>
+    <h1 class="display-1">Form Validation</h1>
     <form @submit.prevent="onSubmit">
         <div class="form-group">
             <p v-if="firstInputErr"class="text-danger">Error: Input is longer than 20 characters</p>
-            <input type="text" id="firstInput" v-model="firstInput" placeholder="First" class="form-control"><br>
+            <input type="text" 
+                   id="firstInput" 
+                   v-model="firstInput" 
+                   placeholder="Enter text that is no longer than 20 characters" 
+                   class="form-control">
+            <br>
         </div>
         <div class="form-group">
             <p v-if="secondInputErrA"class="text-danger">Error: Input is longer than 50 characters</p>
             <p v-if="secondInputErrB"class="text-danger">Error: Input can only contain numbers or spaces</p>
-            <textarea id="secondInput" v-model="secondInput" placeholder="Second" class="form-control"></textarea><br>
+            <textarea id="secondInput" 
+                      v-model="secondInput" 
+                      placeholder="Enter numbers and spaces only (cannot exceed 50 characters)" 
+                      class="form-control">
+            </textarea><br>
         </div>
         <div class="form-group">
             <p v-if="thirdInputErrA"class="text-danger">Error: Input must be in format 'MM/DD/YYYY'</p>
             <p v-if="thirdInputErrB"class="text-danger">Error: Invalid Date</p>
-            <input id="thirdInput" v-model="thirdInput" placeholder="Third" class="form-control"><br>
+            <input id="thirdInput" 
+                   v-model="thirdInput" 
+                   placeholder="Enter date in form 'MM/DD/YYYY" 
+                   class="form-control">
+            <br>
         </div>
         <button type="submit" class="btn" v-bind:class="[submitErr ? 'btn-danger' : 'btn-success']">Submit</button>
         
@@ -124,7 +137,7 @@ Vue.component('Part2', {
                 this.thirdInputErrA = false
             
             //If date is not a valid date
-            if(!this.thirdInputErrA && !moment(input).isValid())
+            if(!this.thirdInputErrA && !moment(input,'MM/DD/YYYY').isValid())
                 this.thirdInputErrB = true;
             else
                 this.thirdInputErrB = false
@@ -133,22 +146,14 @@ Vue.component('Part2', {
             this.firstInputValidation(this.firstInput)
             this.secondInputValidation(this.secondInput)
             this.thirdInputValidation(this.thirdInput)
-            console.log(this.firstInputErr)
-            console.log(this.secondInputErrA)
-            console.log(this.secondInputErrB)
-            console.log(this.thirdInputErrA)
-            console.log(this.thirdInputErrB)
 
             if(this.firstInputErr || this.secondInputErrA || this.secondInputErrB || this.thirdInputErrA || this.thirdInputErrB){
-                console.log("error")
                 this.submitErr = true
-                console.log("submitError: " + this.submitErr)
             }
             else {
                 this.submitErr = false
                 console.log("submit")
             }
-            console.log("submitError: " + this.submitErr)
         }
     }
 })

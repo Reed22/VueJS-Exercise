@@ -18,11 +18,3 @@ li, .form-group {
 input {
     margin: 50%;
 }
-
-.bad-btn {
-    background-color: red;
-}
-
-.good-btn {
-    background-color: green;
-}
